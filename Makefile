@@ -23,3 +23,4 @@ print_heap.o: print_heap.c mem.h mem_impl.h
 
 getmem.o: getmem.c mem.h mem_impl.h 
 	gcc -Wall -g -c getmem.c
+

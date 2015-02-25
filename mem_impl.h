@@ -8,9 +8,8 @@
 #include <stdlib.h>
 
 struct block {
-  int size;
-  uintptr_t* next;
-  char* data;
+  uintptr_t size;
+  void* next;
 };
 
 struct block* newBlock();

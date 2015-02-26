@@ -1,3 +1,22 @@
+commit 911c953859ce2e2c2e57304c8ca8f5f697a78a4e
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Wed Feb 25 15:13:01 2015 -0800
+
+    Add .gitignore if git is still tracking your .o files during git status then run the command git rm *.o --cache
+
+commit f92e0c866ff0babd314a7125b920de3ab0910b55
+Merge: 152ad0d 9a6e4dd
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Wed Feb 25 14:00:45 2015 -0800
+
+    Merge branch 'master' of gitlab.cs.washington.edu:cse374-15wi-proj/hw6-cd
+
+commit 152ad0ddc146aa6d17e805697e16abb2ce7a67db
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Wed Feb 25 14:00:24 2015 -0800
+
+    add log file
+
 commit 24484ca3f45a6c6aa7a8939fd6bb5e3f31f49fae
 Author: KARL D MARRETT <kdmarret@u.washington.edu>
 Date:   Wed Feb 25 13:54:49 2015 -0800
@@ -9,3 +28,9 @@ Author: KARL D MARRETT <kdmarret@u.washington.edu>
 Date:   Wed Feb 25 13:33:37 2015 -0800
 
     First commit on hw6-an from Tuesday meeting with Nan.  Still contains errors with struct
+
+commit 9a6e4ddca1cfdc687fcdca3e35b5180fa77cedac
+Author: NAN JIANG <nj8@u.washington.edu>
+Date:   Sat Feb 21 19:52:51 2015 -0800
+
+    I changed getmem for an example

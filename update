@@ -1,8 +1,0 @@
-#! /bin/bash
-
-# Update git.log and tar file to newest changes via:
-# chmod +x update
-# ./update
-
-git log > git.log
-tar -cvf dist.tar *

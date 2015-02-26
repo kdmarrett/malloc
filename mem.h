@@ -2,7 +2,7 @@
 // Nan Jiang
 // CSE 374 HW6
 // Feb 20th
-// mem.h for dist program
+// memder file mem.h for dist program
 
 #ifndef MEM_H
 #include <stdlib.h>

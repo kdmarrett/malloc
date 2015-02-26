@@ -1,3 +1,9 @@
+// Karl Marrett
+// Nan Jiang
+// CSE 374 HW6
+// Feb 20th
+// header file that includes data structure of memory block for dist program
+
 #ifndef BLOCK_H
 #define BLOCK_H
 
@@ -7,11 +13,10 @@
 #include <ctype.h>
 #include <stdlib.h>
 
-struct block {
+typedef struct block {
   uintptr_t size;
-  void* next;
-};
+  struct newBlock* next;
+}newBlock;
 
-struct block* newBlock();
 
 #endif

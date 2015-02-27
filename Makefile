@@ -30,6 +30,6 @@ test: bench
 clean:
 	rm -f *.o bench hw6.tar
 log:
-	git log >> git.log
+	git log > git.log
 tar:
 	tar -cvf hw6.tar mem_impl.h mem.h getmem.c get_mem_stats.c freemem.c print_heap.c Makefile git.log README.md

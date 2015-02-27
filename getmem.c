@@ -47,7 +47,7 @@ void* getmem(uintptr_t size) {
 	}else {
 		while(h1->next != NULL) {
 			if((h1->next)->size > size) {
-				printf("123\n");
+				//printf("123\n");
 				h2 = h2->next;
 				if((h1->next)->next != NULL) {
 					h1->next = h2->next;
@@ -68,6 +68,8 @@ void* getmem(uintptr_t size) {
 					free_list = h2;				
 				} else {
 					while(h1->next != NULL) {
+						printf("stuck\n");
+						//error occurs here, need to be changed
 						if((h1->next)->size > h2->size) {
 							h2->next = h1->next;
 							h1 = h2;
@@ -80,7 +82,7 @@ void* getmem(uintptr_t size) {
 				}
 				
 			}
-				//printf("123\n");
+				//printf("1\n");
 				h1 = h1->next;
 				h2 = h2->next;
 		}

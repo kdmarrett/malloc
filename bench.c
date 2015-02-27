@@ -31,6 +31,11 @@ int main(int argc, char** argv) {
 	h3 = malloc(1000);
 	h3->size = 1000 - sizeof(*h3);
 	h2->next = h3;
+	
+	newBlock* h4;
+	h4 = malloc(2050);
+	h4->size = 2050 - sizeof(*h3);
+	h3->next = h4;
 	//testing getmem
 	/*newBlock* test;
 	test = getmem(400); 
@@ -41,7 +46,7 @@ int main(int argc, char** argv) {
 	//getmem(479);
 	//getmem(983);
 	newBlock* test;
-	test = getmem(973); 
+	test = getmem(1030); 
 	int pr = (int) test->size;
 	printf("%d\n", pr);
 	//testing print_heap

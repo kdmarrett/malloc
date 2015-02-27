@@ -32,7 +32,7 @@ void* getmem(uintptr_t size) {
 			newBlock* temp;
 			temp = malloc(MSIZE);
 			temp->size = MSIZE;
-			node = temp + sizeof(*temp) + temp->size - size;
+			node = temp + sizeof(*temp) + temp->size - size; //check this later (address might be wrong)
 			node->size = size; 
 			free_list = temp;
 			free_list->size = MSIZE - sizeof(*temp) - size;
@@ -92,7 +92,6 @@ void* getmem(uintptr_t size) {
 				} else {
 					while(h1->next != NULL) {
 						if((h1->next)->size > h2->size) {
-							printf("test");
 							h2->next = h1->next;
 							h1->next = h2;
 							return temp;

@@ -3,3 +3,6 @@ gitlabkeyfile
 gitlabkeyfile.pub
 *.tar
 dist
+*.h~
+*.c~
+*.swp

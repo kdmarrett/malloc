@@ -13,6 +13,7 @@
 #include "mem_impl.h"
 
 #define MSIZE 4000
+#define THRESHOLD 20
 
 newBlock* free_list = NULL;
 
@@ -37,42 +38,63 @@ void* getmem(uintptr_t size) {
 	newBlock* h1;
 	newBlock* h2;
 	h1 = free_list;
+	h1->size = free_list->size;
 	h2 = free_list;
 	if(h1->size > size) {
 		newBlock* tempN;
-		tempN = h1 + sizeof(*tempN) + h1->size - size; 
-		h1->size = h1->size - size;
-		tempN->size = size;
+		if((h1->size-size) > THRESHOLD) {
+			tempN = h1 + sizeof(*tempN) + h1->size - size; 
+			h1->size = h1->size - size;
+			tempN->size = size;
+		} else {
+			tempN = h1+sizeof(*tempN);
+			free_list = h1->next;
+			tempN->size = h1->size;
+		}
 		return tempN;
+	}else if(h1->size == size) {
+		free_list = h2->next;
+		h1 = h1 + sizeof(*h1);
+		h1->size = size;
+		return h1;
 	}else {
 		while(h1->next != NULL) {
-			if((h1->next)->size > size) {
-				//printf("123\n");
+			//printf("first while");
+			if((h1->next)->size > size || (h1->next)->size == size) {
+				//printf("first while");
 				h2 = h2->next;
-				if((h1->next)->next != NULL) {
+				if(h1->next->size == size || (h1->next->size-size) < THRESHOLD) {
+					uintptr_t tempSize = h1->next->size;
 					h1->next = h2->next;
 					h2->next = NULL;
-				}else {
+					h2 = h2 +sizeof(*h2);
+					h2->size = tempSize;
+					return h2;
+					//printf("123");
+					
+				}else if(h2->next != NULL) {
+					h1->next = h2->next;
+					h2->next = NULL;
+				}else if(h2->next == NULL){
 					h1->next = NULL;
 				}
 				newBlock* temp;
 				temp = h2 + sizeof(*h2)+h2->size-size;
 				temp->size = size;
 				h2->size = h2->size-size;
-				int test = (int) h2->size;
-				printf("%d", test);
 				//put h2 back in free_list
 				h1 = free_list;
 				if(h2->size < h1->size) {
 					h2->next = h1;
-					free_list = h2;				
+					free_list = h2;	
+					return temp;			
 				} else {
 					while(h1->next != NULL) {
-						printf("stuck\n");
-						//error occurs here, need to be changed
 						if((h1->next)->size > h2->size) {
+							printf("test");
 							h2->next = h1->next;
-							h1 = h2;
+							h1->next = h2;
+							return temp;
 						}else {
 							h1 = h1->next;
 						}
@@ -82,9 +104,8 @@ void* getmem(uintptr_t size) {
 				}
 				
 			}
-				//printf("1\n");
-				h1 = h1->next;
-				h2 = h2->next;
+			h1 = h1->next;
+			h2 = h2->next;
 		}
 		newBlock* create;
 		create = malloc(size);

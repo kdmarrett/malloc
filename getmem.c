@@ -8,7 +8,7 @@
 #include "mem_impl.h"
 
 #define MSIZE 4000
-#define THRESHOLD 20
+#define THRESHOLD 32
 
 newBlock* free_list = NULL;
 uintptr_t tsize = 0;

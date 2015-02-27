@@ -4,11 +4,6 @@
 // Feb 20th
 // bench.c for dist program
 
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-#include <stdio.h>
-#include <inttypes.h>
 #include "mem.h"
 #include "mem_impl.h"
 
@@ -16,7 +11,7 @@ extern newBlock * free_list;
 extern uintptr_t tsize;
 
 int main(int argc, char** argv) {
-	//manually add block
+	//manually create a free_list
 	free_list = malloc(500);
 	free_list->size = 500-sizeof(*free_list);
 	newBlock* h1;
@@ -37,18 +32,12 @@ int main(int argc, char** argv) {
 	h4 = malloc(2050);
 	h4->size = 2050 - sizeof(*h3);
 	h3->next = h4;
+	
 	//testing getmem
-	/*newBlock* test;
-	test = getmem(400); 
-	int pr = (int) test->size;
-	printf("%d\n", pr);
-	printf("%p\n", test);*/
-	//getmem(200);
-	//getmem(479);
-	//getmem(983);
 	getmem(1030); 
 	getmem(5000);
-	//testing get_mem_stats
+
+	//get_mem_stats
 	uintptr_t *total_size = (uintptr_t *) malloc(sizeof(uintptr_t));
 	uintptr_t *total_free = (uintptr_t *) malloc(sizeof(uintptr_t));
 	uintptr_t *n_free_blocks = (uintptr_t *) malloc(sizeof(uintptr_t));
@@ -56,7 +45,8 @@ int main(int argc, char** argv) {
 	printf("%lu\n", *total_size);
 	printf("%lu\n", *total_free);
 	printf("%lu\n", *n_free_blocks);
-	//testing print_heap
+
+	//print_heap
 	FILE *f;
 	f = fopen("test", "w+");
 	print_heap(f);

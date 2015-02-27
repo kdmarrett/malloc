@@ -8,5 +8,10 @@
 
 
 int main(int argc, char** argv) {
+	//testing print_heap
+	FILE *f;
+	f = fopen("test", "w+");
+	print_heap(f);
+	fclose(f);
 	return 0;
 }

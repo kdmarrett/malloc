@@ -12,7 +12,7 @@
 #include "mem.h"
 #include "mem_impl.h"
 
-struct newBlock* free_list = NULL;
+newBlock* free_list = NULL;
 
 void* getmem(uintptr_t size) {	
 	void* p = NULL;

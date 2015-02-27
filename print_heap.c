@@ -8,10 +8,10 @@
 #include "mem.h"
 
 //not done yet
-extern struct newBlock* free_list;
+extern newBlock* free_list;
 
 void print_heap(FILE * f) {
-	struct newBlock* current = free_list;
+	newBlock* current = free_list;
 	if(free_list == NULL) {
 		printf("The list is NULL\n");
 		return;
@@ -21,7 +21,7 @@ void print_heap(FILE * f) {
 	}else{
 		while(current != NULL) {
 			printf("123");
-			//current = current->next;
+			current = current->next;
 		}
 	}
 

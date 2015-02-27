@@ -13,6 +13,7 @@
 #include "mem_impl.h"
 
 extern newBlock * free_list;
+extern uintptr_t tsize;
 
 int main(int argc, char** argv) {
 	//manually add block
@@ -45,10 +46,16 @@ int main(int argc, char** argv) {
 	//getmem(200);
 	//getmem(479);
 	//getmem(983);
-	newBlock* test;
-	test = getmem(1030); 
-	int pr = (int) test->size;
-	printf("%d\n", pr);
+	getmem(1030); 
+	getmem(5000);
+	//testing get_mem_stats
+	uintptr_t *total_size = (uintptr_t *) malloc(sizeof(uintptr_t));
+	uintptr_t *total_free = (uintptr_t *) malloc(sizeof(uintptr_t));
+	uintptr_t *n_free_blocks = (uintptr_t *) malloc(sizeof(uintptr_t));
+	get_mem_stats(total_size, total_free, n_free_blocks);
+	printf("%lu\n", *total_size);
+	printf("%lu\n", *total_free);
+	printf("%lu\n", *n_free_blocks);
 	//testing print_heap
 	FILE *f;
 	f = fopen("test", "w+");

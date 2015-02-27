@@ -11,6 +11,7 @@
 #define THRESHOLD 20
 
 newBlock* free_list = NULL;
+uintptr_t tsize = 0;
 
 void* getmem(uintptr_t size) {	
 	if(size < 0) { //if size is less than zero
@@ -19,12 +20,15 @@ void* getmem(uintptr_t size) {
 		//use malloc to create a block
 		newBlock* node;
 		if(size > MSIZE || size == MSIZE) { //if it's too big, create a block that satisfy the needs
+			tsize = tsize + size;		
 			node = malloc(size);
 			node->size= size;
 		}else if(size < MSIZE && MSIZE-size < THRESHOLD){ //within threshold, return the whole block
+			tsize = tsize + MSIZE;
 			node = malloc(MSIZE);
 			node->size= MSIZE;
 		}else { //return the needed memory, and put the rest back to free_list
+			tsize = tsize + MSIZE;			
 			newBlock* temp;
 			temp = malloc(MSIZE);
 			temp->size = MSIZE;
@@ -104,6 +108,7 @@ void* getmem(uintptr_t size) {
 			h1 = h1->next;
 			h2 = h2->next;
 		}
+		tsize = tsize + size;
 		newBlock* create;
 		create = malloc(size);
 		create->size= size;

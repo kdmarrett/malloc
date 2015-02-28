@@ -66,41 +66,19 @@ void* getmem(uintptr_t size) {
 		while(h1->next != NULL) {
 			// if h2 suitable block
 			if((h1->next)->size > size || (h1->next)->size == size) { 
-				h2 = h2->next; // confusing location 
+				h2 = h2->next; // move h2 one node in front of h1 
 				if(h1->next->size == size || (h1->next->size-size) < THRESHOLD) { //return the whole block
 					uintptr_t tempSize = h1->next->size;
 					h1->next = h2->next;
 					h2->next = NULL;
 					h2->size = tempSize;
 					return h2;
-				}else if(h2->next != NULL) {
-					h1->next = h2->next;
-					h2->next = NULL;
-				}else if(h2->next == NULL){
-					h1->next = NULL;
-				}
-				newBlock* temp;
-				temp = h2 + h2->size-size; //temp = h2+hsize+h2->size-size-hsize
-				temp->size = size;
-				h2->size = h2->size-size-hsize; //minus the size of next and uint
-				// Reordering section:
-				// h1 = free_list;
-				// if(h2->size < h1->size) {
-				// 	h2->next = h1;
-				// 	free_list = h2;	
-				// 	return temp;			
-				// } else {
-				// 	while(h1->next != NULL) {
-				// 		if((h1->next)->size > h2->size) {
-				// 			h2->next = h1->next;
-				// 			h1->next = h2;
-				// 			return temp;
-				// 		}else {
-				// 			h1 = h1->next;
-				// 		}
-				// 	}
-				h1->next = h2;
-				return temp;
+				}else {
+					newBlock* temp;
+					temp = h2 + h2->size-size; //temp = h2+hsize+h2->size-size-hsize
+					temp->size = size;
+					h2->size = h2->size-size-hsize; //minus the size of next and uint
+					return temp;
 				}
 			}
 			h1 = h1->next;

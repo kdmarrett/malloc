@@ -1,9 +1,91 @@
+commit 6ed891773229ad5d06926ca01e47aff40ddb8ac8
+Author: NAN JIANG <nj8@u.washington.edu>
+Date:   Fri Feb 27 14:50:00 2015 -0800
+
+    few more changes in gitignore and getmem
+
+commit 0e255f87ede036e3deea1f926045185e0e6384d4
+Author: NAN JIANG <nj8@u.washington.edu>
+Date:   Fri Feb 27 13:28:54 2015 -0800
+
+    update
+
+commit 95a0b5fc8ac494152b377647fb627c5116da4a25
+Author: NAN JIANG <nj8@u.washington.edu>
+Date:   Fri Feb 27 13:11:33 2015 -0800
+
+    get_mem_stats
+
+commit 3e54da2a0de8b2d1908b41282ec5f9f49c9630ec
+Merge: 917dfc3 7eab1b0
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Sun Mar 1 10:40:09 2015 -0800
+
+    Merge branch 'master' of gitlab.cs.washington.edu:cse374-15wi-proj/hw6-cd
+    
+    Conflicts:
+    	dist
+
+commit 7eab1b05c37f959dca2475a669d4351d98f4b4fb
+Author: NAN JIANG <nj8@u.washington.edu>
+Date:   Fri Feb 27 02:45:32 2015 -0800
+
+    last version of getmem.c
+
+commit c7c2aea8c3a895ed08c5de0250e14352bb647f09
+Author: NAN JIANG <nj8@u.washington.edu>
+Date:   Fri Feb 27 02:11:36 2015 -0800
+
+    getmem.c without testing of the address of  reurned pointer
+
+commit e792ef87f625f262fb88e331b8008131a5456e8f
+Author: NAN JIANG <nj8@u.washington.edu>
+Date:   Thu Feb 26 23:57:05 2015 -0800
+
+    bug located, need to be fixed later
+
+commit dfb1ed56c4ce6195e7f6d59e3f43bd89639c5349
+Author: NAN JIANG <nj8@u.washington.edu>
+Date:   Thu Feb 26 23:52:03 2015 -0800
+
+    testing version of getmem.c
+
+commit 131a53c1df642610ccff69fc0cde87f9fd62024a
+Author: NAN JIANG <nj8@u.washington.edu>
+Date:   Thu Feb 26 18:21:20 2015 -0800
+
+    tar file updated to the newest version
+
+commit 2de6d73d609899c511e09a2284250396af112797
+Author: NAN JIANG <nj8@u.washington.edu>
+Date:   Thu Feb 26 18:18:15 2015 -0800
+
+    newest version
+
+commit aed71e96238d4d15a3dc1a42c526d9abdca82b7c
+Author: NAN JIANG <nj8@u.washington.edu>
+Date:   Thu Feb 26 18:00:34 2015 -0800
+
+    print_heap is ready to use
+
+commit d6892e171d38b652a2b92e394716f231f93de553
+Author: NAN JIANG <nj8@u.washington.edu>
+Date:   Thu Feb 26 17:50:42 2015 -0800
+
+    print_heap testing and bench.c modified
+
 commit 917dfc36dfd1be078cd83a1268df1ed3d30f9e62
 Author: KARL D MARRETT <kdmarret@u.washington.edu>
 Date:   Thu Feb 26 16:52:26 2015 -0800
 
     Changed functionality of log saving in Makefile the new output of
     log should overwrite not be appended to the previous log file
+
+commit 7ade08c1768c8fbb757842deaf80b1c6e952e76f
+Author: NAN JIANG <nj8@u.washington.edu>
+Date:   Thu Feb 26 15:30:50 2015 -0800
+
+    tar of all files
 
 commit bafe926832d713c9002891f05e0828d7b7cf8791
 Author: NAN JIANG <nj8@u.washington.edu>

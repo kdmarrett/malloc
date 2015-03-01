@@ -1,8 +1,46 @@
-commit 9a6e4ddca1cfdc687fcdca3e35b5180fa77cedac
-Author: NAN JIANG <nj8@u.washington.edu>
-Date:   Sat Feb 21 19:52:51 2015 -0800
+commit 917dfc36dfd1be078cd83a1268df1ed3d30f9e62
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Thu Feb 26 16:52:26 2015 -0800
 
-    I changed getmem for an example
+    Changed functionality of log saving in Makefile the new output of
+    log should overwrite not be appended to the previous log file
+
+commit bafe926832d713c9002891f05e0828d7b7cf8791
+Author: NAN JIANG <nj8@u.washington.edu>
+Date:   Thu Feb 26 15:27:47 2015 -0800
+
+    merged with Karl
+
+commit bab8404fd04ab7c30f7cdfc20572e56a674107c3
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Thu Feb 26 14:31:44 2015 -0800
+
+    small change to update
+
+commit e1c2c40d30d8364ad170fde9bc16bdef3455f800
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Thu Feb 26 05:29:28 2015 -0800
+
+    add housekeeping files
+
+commit 911c953859ce2e2c2e57304c8ca8f5f697a78a4e
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Wed Feb 25 15:13:01 2015 -0800
+
+    Add .gitignore if git is still tracking your .o files during git status then run the command git rm *.o --cache
+
+commit f92e0c866ff0babd314a7125b920de3ab0910b55
+Merge: 152ad0d 9a6e4dd
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Wed Feb 25 14:00:45 2015 -0800
+
+    Merge branch 'master' of gitlab.cs.washington.edu:cse374-15wi-proj/hw6-cd
+
+commit 152ad0ddc146aa6d17e805697e16abb2ce7a67db
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Wed Feb 25 14:00:24 2015 -0800
+
+    add log file
 
 commit 24484ca3f45a6c6aa7a8939fd6bb5e3f31f49fae
 Author: KARL D MARRETT <kdmarret@u.washington.edu>
@@ -15,37 +53,9 @@ Author: KARL D MARRETT <kdmarret@u.washington.edu>
 Date:   Wed Feb 25 13:33:37 2015 -0800
 
     First commit on hw6-an from Tuesday meeting with Nan.  Still contains errors with struct
+
 commit 9a6e4ddca1cfdc687fcdca3e35b5180fa77cedac
 Author: NAN JIANG <nj8@u.washington.edu>
 Date:   Sat Feb 21 19:52:51 2015 -0800
 
     I changed getmem for an example
-
-commit 24484ca3f45a6c6aa7a8939fd6bb5e3f31f49fae
-Author: KARL D MARRETT <kdmarret@u.washington.edu>
-Date:   Wed Feb 25 13:54:49 2015 -0800
-
-    small change to mem impl
-
-commit 5b3d8b3091ab3329482ec0c48136564e8311fff7
-Author: KARL D MARRETT <kdmarret@u.washington.edu>
-Date:   Wed Feb 25 13:33:37 2015 -0800
-
-    First commit on hw6-an from Tuesday meeting with Nan.  Still contains errors with struct
-commit 9a6e4ddca1cfdc687fcdca3e35b5180fa77cedac
-Author: NAN JIANG <nj8@u.washington.edu>
-Date:   Sat Feb 21 19:52:51 2015 -0800
-
-    I changed getmem for an example
-
-commit 24484ca3f45a6c6aa7a8939fd6bb5e3f31f49fae
-Author: KARL D MARRETT <kdmarret@u.washington.edu>
-Date:   Wed Feb 25 13:54:49 2015 -0800
-
-    small change to mem impl
-
-commit 5b3d8b3091ab3329482ec0c48136564e8311fff7
-Author: KARL D MARRETT <kdmarret@u.washington.edu>
-Date:   Wed Feb 25 13:33:37 2015 -0800
-
-    First commit on hw6-an from Tuesday meeting with Nan.  Still contains errors with struct

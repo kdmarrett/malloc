@@ -13,7 +13,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 
-typedef struct block {
+typedef struct newBlock {
   uintptr_t size;
   struct newBlock* next;
 }newBlock;

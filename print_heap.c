@@ -7,5 +7,24 @@
 #include "mem_impl.h"
 #include "mem.h"
 
+//takes FILE f as parameter
+//writes the address and size of each block in free_list into the given file
+//if free_list or the file is null, it will print the corresponding error messages
+extern newBlock* free_list;
+
 void print_heap(FILE * f) {
+	newBlock* current = free_list;
+	if(free_list == NULL) {
+		printf("The list is NULL\n");
+		return;
+	}else if(f == NULL){
+		printf("file does not exist\n");
+		return;
+	}else{
+		while(current != NULL) {
+			fprintf(f, "address: %p size: %d \n", current, (int)current->size);
+			current = current->next;
+		}
+	}
+
 }

@@ -12,6 +12,7 @@
 
 newBlock* free_list = NULL;
 uintptr_t tsize = 0;
+// size of header for finding data/top of block
 uintptr_t hsize = sizeof(newBlock*) + sizeof(uintptr_t);
 
 void* getmem(uintptr_t size) {	
@@ -31,8 +32,6 @@ void* getmem(uintptr_t size) {
 		}else { //return the needed memory, and put the rest back to free_list
 			tsize = tsize + MSIZE;			
 			newBlock* temp;
-			temp = malloc(MSIZE + hsize);
-			temp->size = MSIZE;
 			node = temp + temp->size - size; //node=temp+hsize+temp->size-soze-hsize
 			node->size = size; 
 			free_list = temp;
@@ -65,13 +64,13 @@ void* getmem(uintptr_t size) {
 		return h1;
 	}else { //if the size of first block is smaller than needed, go through the list
 		while(h1->next != NULL) {
+			// if h2 suitable block
 			if((h1->next)->size > size || (h1->next)->size == size) { 
-				h2 = h2->next;
+				h2 = h2->next; // confusing location 
 				if(h1->next->size == size || (h1->next->size-size) < THRESHOLD) { //return the whole block
 					uintptr_t tempSize = h1->next->size;
 					h1->next = h2->next;
 					h2->next = NULL;
-					//h2 = h2;
 					h2->size = tempSize;
 					return h2;
 				}else if(h2->next != NULL) {
@@ -84,26 +83,25 @@ void* getmem(uintptr_t size) {
 				temp = h2 + h2->size-size; //temp = h2+hsize+h2->size-size-hsize
 				temp->size = size;
 				h2->size = h2->size-size-hsize; //minus the size of next and uint
-				//put h2 back in free_list
-				h1 = free_list;
-				if(h2->size < h1->size) {
-					h2->next = h1;
-					free_list = h2;	
-					return temp;			
-				} else {
-					while(h1->next != NULL) {
-						if((h1->next)->size > h2->size) {
-							h2->next = h1->next;
-							h1->next = h2;
-							return temp;
-						}else {
-							h1 = h1->next;
-						}
-					}
-					h1->next = h2;
-					return temp;
+				// Reordering section:
+				// h1 = free_list;
+				// if(h2->size < h1->size) {
+				// 	h2->next = h1;
+				// 	free_list = h2;	
+				// 	return temp;			
+				// } else {
+				// 	while(h1->next != NULL) {
+				// 		if((h1->next)->size > h2->size) {
+				// 			h2->next = h1->next;
+				// 			h1->next = h2;
+				// 			return temp;
+				// 		}else {
+				// 			h1 = h1->next;
+				// 		}
+				// 	}
+				h1->next = h2;
+				return temp;
 				}
-				
 			}
 			h1 = h1->next;
 			h2 = h2->next;

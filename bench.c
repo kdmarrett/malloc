@@ -4,6 +4,8 @@
 // Feb 20th
 // bench.c for dist program
 
+// TODO clocking, random seeding, print_heap every 10 iterations
+
 #include "mem.h"
 #include "mem_impl.h"
 
@@ -11,6 +13,79 @@ extern newBlock * free_list;
 extern uintptr_t tsize;
 
 int main(int argc, char** argv) {
+	char* programName;
+	int ntrials;
+	int pctget;
+	int pctlarge;
+	int small_limit;
+	int large_limit;
+	time_t t;
+	int random_seed;
+	srand((unsigned) time(&t));
+
+	programName = argv[0];
+	ntrials = 10000;
+	pctget = 50;
+	pctlarge = 10;
+	small_limit = 200;
+	large_limit = 20000;
+	//int random_seed = rand();	
+	
+	if (argc > 1)  
+		ntrials = (int) argv[1];
+	if (argc > 2)  
+		pctget = (int) argv[2];
+	if (argc > 3)  
+		pctlarge = (int) argv[3];
+	if (argc > 4)  
+		small_limit = (int) argv[4];
+	if (argc > 5)  
+		large_limit = (int) argv[5];
+		if ((large_limit + small_limit) > 32767)  {
+			fprintf(stderr, "%s: warning: does not \ 
+				guarantee correct rand behavior due to \
+				large_limit provided\n", programName);
+		}
+	if (argc > 6)  
+		random_seed = (int) argv[6];
+		srand((unsigned) random_seed);
+
+	int i;
+	int size;
+	int items;
+	int index;
+	int items = 0;
+	void** currentBlocks = 
+		(void** ) malloc(sizeof(newBlock*) * ntrials);
+	for (i = 0; i < ntrials; i++)  {
+		if ((rand() % 100) >= pctget ) {
+			if ((rand() % 100) >= pctlarge ) {
+				size = (rand() % (large_limit - 
+				small_limit)) + small_limit + 1;
+			}  else  {
+				size = (rand() % small_limit) + 1;
+			}
+			// add to end of array
+			currentBlocks[items] = get_mem(size);
+			items++;
+		}  else  {
+			if (items == 0)  {
+				continue;
+			}
+			index = rand() % items;
+			freemem(currentBlocks[index]);
+			if (index != (items - 1))  {
+				//replace with last block
+				currentBlocks[index] = 
+					currentBlocks[items - 1];
+				//remove the last (unnecessary)
+				//currentBlocks[items - 1] = null;
+			}
+			items--;
+		}
+	}
+				
+	// Misc. testing
 	//manually create a free_list
 	free_list = malloc(500);
 	free_list->size = 500-sizeof(*free_list);

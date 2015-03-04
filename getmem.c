@@ -22,16 +22,17 @@ void* getmem(uintptr_t size) {
 		//use malloc to create a block
 		newBlock* node;
 		if(size > MSIZE || size == MSIZE) { //if it's too big, create a block that satisfy the needs
-			tsize = tsize + size;		
+			tsize = tsize + size + hsize;		
 			node = malloc(size + hsize);
 			node->size= size;
 		}else if(size < MSIZE && MSIZE-size < THRESHOLD){ //within threshold, return the whole block
-			tsize = tsize + MSIZE;
+			tsize = tsize + MSIZE + hsize;
 			node = malloc(MSIZE + hsize);
 			node->size= MSIZE;
 		}else { //return the needed memory, and put the rest back to free_list
-			tsize = tsize + MSIZE;			
+			tsize = tsize + MSIZE + hsize;			
 			newBlock* temp;
+			temp = malloc(MSIZE + hsize);
 			node = temp + temp->size - size; //node=temp+hsize+temp->size-soze-hsize
 			node->size = size; 
 			free_list = temp;
@@ -73,7 +74,7 @@ void* getmem(uintptr_t size) {
 					h2->next = NULL;
 					h2->size = tempSize;
 					return h2;
-				}else {
+				}else { //only take the needed memory and leave the rest at current place
 					newBlock* temp;
 					temp = h2 + h2->size-size; //temp = h2+hsize+h2->size-size-hsize
 					temp->size = size;
@@ -84,7 +85,8 @@ void* getmem(uintptr_t size) {
 			h1 = h1->next;
 			h2 = h2->next;
 		}
-		tsize = tsize + size;
+		//if cannot find enough space, malloc more
+		tsize = tsize + size + hsize;
 		newBlock* create;
 		create = malloc(size + hsize); //malloc extra space for the struct
 		create->size= size;

@@ -19,15 +19,13 @@
 #include <stdlib.h>
 
 extern newBlock* free_list;
+//size of newBlock overhead PUT IN MEMIMPL.H LATER??
 extern uintptr_t hsize;
 
 void freemem(void* p);
 newBlock* addBlock(newBlock* current, void* p);
 void handleCombines(newBlock* current);
 
-// Header sizes
-//size of newBlock overhead THIS SHOULD BE PUT IN MEMIMPL.H LATER
-//uintptr_t hsize = (uintptr_t) sizeof(newBlock*) + sizeof(uintptr_t);
 
 /** Takes a memory address of a newBlock to be
  * freed. p points to address of the size field. 

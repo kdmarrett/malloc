@@ -19,6 +19,7 @@
 #include <stdlib.h>
 
 extern newBlock* free_list;
+extern uintptr_t hsize;
 
 void freemem(void* p);
 newBlock* addBlock(newBlock* current, void* p);
@@ -26,8 +27,7 @@ void handleCombines(newBlock* current);
 
 // Header sizes
 //size of newBlock overhead THIS SHOULD BE PUT IN MEMIMPL.H LATER
-uintptr_t hsize = (uintptr_t) sizeof(newBlock*) + sizeof(uintptr_t);
-uintptr_t hmalloc = (uintptr_t) 16; //size of malloc block overhead
+//uintptr_t hsize = (uintptr_t) sizeof(newBlock*) + sizeof(uintptr_t);
 
 /** Takes a memory address of a newBlock to be
  * freed. p points to address of the size field. 
@@ -51,10 +51,14 @@ newBlock* addBlock(newBlock* current, void* p)
 	if (current == NULL)  {
 		current = (newBlock*) p; 
 		current->next = NULL; //protect current from faulty next
-	} else if (current > p)  { //address of p is less than current
-		uintptr_t next = p + sizeof(uintptr_t);//get next &
-		*next = current; //make p point to current
+	} else if (((void*)current) > p)  { //address of p is less than current
+		//uintptr_t p = (uintptr_t) p;
+		//uintptr_t next = p + 1;//get mem& of next field
+		//*next = current; //make p point to current
+		newBlock* temp;
+		temp = current;
 		current = (newBlock*) p; 
+		current->next = temp;
 	} else  { // traverse freelist further
 		current->next = addBlock(current->next, p);
 	}
@@ -71,14 +75,14 @@ void handleCombines(newBlock* current)
 {
 	if (current->next != NULL)  {
 		//address of next contiguous memory
-		uintptr_t nextAddress = 
-			current + hsize + current->size + hmalloc;
+		void* nextAddress = 
+			current + hsize + current->size;
 		// check next possible & matches actual current->next &
-		if (nextAddress == &(current->next))  { //&current bug?
+		if (nextAddress == ((void*) &(current->next)))  { //&current bug?
 			// combine blocks
 			current->size = 
 				current->size + current->next->size +
-				hmalloc + hsize;
+				 hsize;
 			current->next = current->next->next;
 		}
 	}

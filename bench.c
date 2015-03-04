@@ -54,6 +54,8 @@ int main(int argc, char** argv) {
 	int size;
 	int items;
 	int index;
+	int tenPercent;
+	tenPercent = ntrials / 10;
 	int items = 0;
 	void** currentBlocks = 
 		(void** ) malloc(sizeof(newBlock*) * ntrials);
@@ -82,6 +84,10 @@ int main(int argc, char** argv) {
 				//currentBlocks[items - 1] = null;
 			}
 			items--;
+		}
+		if ((i % tenPercent) == 0)  {
+			// print_heap;
+			//printf(
 		}
 	}
 				

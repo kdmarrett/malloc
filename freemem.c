@@ -73,10 +73,10 @@ void handleCombines(newBlock* current)
 {
 	if (current->next != NULL)  {
 		//address of next contiguous memory
-		void* nextAddress = 
+		newBlock* nextAddress = 
 			current + hsize + current->size;
 		// check next possible & matches actual current->next &
-		if (nextAddress == ((void*) &(current->next)))  { //&current bug?
+		if (nextAddress == ( current->next))  { 
 			// combine blocks
 			current->size = 
 				current->size + current->next->size +

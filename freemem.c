@@ -78,8 +78,10 @@ void handleCombines(newBlock* current)
 	if (current->next == NULL)  
 		return;// do nothing
 	//address of next contiguous memory
-	newBlock* nextAddress = (newBlock*)
-		current + hsize + current->size;
+	uintptr_t loc;
+	newBlock* nextAddress;
+	loc = (uintptr_t) current; // cast the pointer address
+	nextAddress = (newBlock*) (loc + hsize + current->size);
 	// check if next possible & matches actual current->next &
 	if (nextAddress == current->next)  { 
 		// combine blocks

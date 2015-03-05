@@ -37,15 +37,18 @@ void* getmem(uintptr_t size) {
 			node->size= MSIZE;
 		//case under MSIZE, leave leftover in free_list
 		}else { 
+			//update total size
 			tsize = tsize + MSIZE + hsize;			
 			newBlock* temp;
 			// top of new block that is returned
-			node = (newBlock*) malloc(MSIZE + hsize);
-			assert(node != NULL && "malloc failed in getmem");
+			uintptr_t locNode;
+			// cast the pointer address
+			locNode = (uintptr_t) malloc(MSIZE + hsize);
+			//assert(locNode != NULL && "malloc failed in getmem");
+			node = (newBlock*) locNode;
 			node->size = size; 
 			//cut temp out of bottom of node
-			temp = (newBlock*) (node + hsize + size);
-			assert(temp != NULL && "invalid loc in getmem");
+			temp = (newBlock*) (locNode + hsize + size);
 			//minus the size of next and uint
 			temp->size = MSIZE - (size + hsize); 
 			free_list = temp;
@@ -89,7 +92,9 @@ void* getmem(uintptr_t size) {
 					// cut temp out of bottom of h2
 					printf("h2size: %" PRIuPTR "\n", h2->size);
 					printf("size: %" PRIuPTR "\n", size);
-					temp = (newBlock* )(h2 + h2->size - size); 
+					uintptr_t loc;
+					loc = (uintptr_t) h2; // cast the pointer address
+					temp = (newBlock* )(loc + h2->size - size); 
 					temp->size = size;
 					// leave h2, update size
 					h2->size = h2->size - (size + hsize); 

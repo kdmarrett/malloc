@@ -4,7 +4,7 @@
 // Feb 20th
 // bench.c for dist program
 
-// TODO clocking, random seeding, print_heap every 10 iterations
+// TODO clocking, random seeding, printing every 10 iterations
 
 #include "mem.h"
 #include "mem_impl.h"
@@ -58,6 +58,7 @@ int main(int argc, char** argv) {
 		srand((unsigned) random_seed);
 
 	// Misc. testing
+
 	// manually create a free_list
 	// free_list = malloc(500);
 	// free_list->size = 500-sizeof(*free_list);
@@ -94,20 +95,40 @@ int main(int argc, char** argv) {
 	// 		printf("%lu\n", *total_free);
 	// 		printf("%lu\n", *n_free_blocks);
 		
-	void* p;
-	p = getmem(48);
-	//print_heap
-	FILE *f;
-	f = fopen("test", "w+");
-	print_heap(f);
+	// void* p;
+	// void* q;
+	// int j;
+	// int k;
+	// j = 0;
+	// k = 1;
+	// while(k < j)  {
+	// 	k++;
+	// 	p = getmem(5000 + k* 20);
+	// 	q = getmem(5000+ k * 17);
+	// 	if (k % 2 ==0) {
+	// 		freemem(p);
+	// 	}
+	// 	get_mem_stats(
+	// 	&total_size, &total_free, &n_free_blocks);
+	// 	printf("Total size allocated: %lu\n", total_size);
+	// 	printf("Total free size:  %lu\n", total_free);
+	// 	printf("Total blocks: %lu\n", n_free_blocks);
+	// 	end = clock();
+	// 	duration = (double) (end - start) / (double) CLOCKS_PER_SEC;
+	// 	printf("Total time elapsed = %3f\n", duration);
+	// }
+	// //print_heap
+	// FILE *f;
+	// f = fopen("test", "w+");
+	// print_heap(f);
+	// //return 0;
 	
-	fclose(f);
-	freemem(p);
-	freemem(p);
-	getmem(48);
-	getmem(48);
-	getmem(48);
-	return 0;
+	// fclose(f);
+	// getmem(48);
+	// freemem(p);
+	// freemem(p);
+	// getmem(48);
+	// getmem(48);
 	
 	int i;
 	int size;
@@ -142,26 +163,21 @@ int main(int argc, char** argv) {
 				//replace with last block
 				currentBlocks[index] = 
 					currentBlocks[items - 1];
-				//remove the last (unnecessary)
-				//currentBlocks[items - 1] = null;
 			}
 			items--;
 		}
 
 		// Stats
-		if ((i % tenPercent) == 0)  {
+		if (i !=0 && (i % tenPercent) == 0)  {
 			get_mem_stats(
 				&total_size, &total_free, &n_free_blocks);
-			printf("%lu\n", total_size);
-			printf("%lu\n", total_free);
-			printf("%lu\n", n_free_blocks);
+			printf("Total size allocated: %lu\n", total_size);
+			printf("Total free size:  %lu\n", total_free);
+			printf("Free blocks: %lu\n", n_free_blocks);
 			end = clock();
-			duration = (double) (end - start);
-			printf("Total time elapsed = %f", duration);
+			duration = (double) (end - start) / (double) CLOCKS_PER_SEC;
+			printf("Time elapsed = %f\n", duration);
 		}
 	}
-	
 	return 0;
-				
-
 }

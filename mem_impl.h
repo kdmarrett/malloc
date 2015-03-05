@@ -17,6 +17,7 @@ typedef struct newBlock {
   uintptr_t size;
   struct newBlock* next;
 }newBlock;
+newBlock* free_list;
 
 
 #endif

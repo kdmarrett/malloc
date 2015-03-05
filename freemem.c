@@ -44,7 +44,8 @@ newBlock* addBlock(newBlock* current, void* p)
 	if (current == NULL)  {
 		current = (newBlock*) p; 
 		current->next = NULL; //protect current from faulty next
-	} else if (((void*)current) > p)  { //address of p is less than current
+	//address of p is less than current
+	} else if (((void*)current) > p)  { 
 		newBlock* temp;
 		temp = current;
 		current = (newBlock*) p; 

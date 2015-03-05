@@ -11,7 +11,7 @@
 #define MSIZE 4000
 #define THRESHOLD 32
 
-newBlock* free_list = NULL;
+//newBlock* free_list = NULL;
 uintptr_t tsize = 0; // total size malloc in program
 // size of header for finding data/top of block
 uintptr_t hsize = sizeof(newBlock*) + sizeof(uintptr_t);
@@ -86,9 +86,11 @@ void* getmem(uintptr_t size) {
 					return h2;
 				}else { //only take needed memory leave rest current place
 					newBlock* temp;
-					temp = h2 + h2->size-size; //temp = h2+hsize+h2->size-size-hsize
+					// cut temp out of bottom of h2
+					temp = (newBlock* )(h2 + h2->size-size); 
 					temp->size = size;
-					h2->size = h2->size-size-hsize; //minus the size of next and uint
+					// leave h2, update size
+					h2->size = h2->size - (size + hsize); 
 					return temp;
 				}
 			}

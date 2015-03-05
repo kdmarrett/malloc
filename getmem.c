@@ -87,7 +87,9 @@ void* getmem(uintptr_t size) {
 				}else { //only take needed memory leave rest current place
 					newBlock* temp;
 					// cut temp out of bottom of h2
-					temp = (newBlock* )(h2 + h2->size-size); 
+					printf("h2size: %" PRIuPTR "\n", h2->size);
+					printf("size: %" PRIuPTR "\n", size);
+					temp = (newBlock* )(h2 + h2->size - size); 
 					temp->size = size;
 					// leave h2, update size
 					h2->size = h2->size - (size + hsize); 

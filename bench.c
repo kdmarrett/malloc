@@ -55,6 +55,10 @@ int main(int argc, char** argv) {
 	if (argc > 6)  
 		random_seed = atoi(argv[6]);
 		srand((unsigned) random_seed);
+
+	// getmem(100);
+	return 0;
+	
 	int i;
 	int size;
 	int items;
@@ -110,7 +114,7 @@ int main(int argc, char** argv) {
 	return 0;
 				
 	// Misc. testing
-	//manually create a free_list
+	// manually create a free_list
 	// free_list = malloc(500);
 	// free_list->size = 500-sizeof(*free_list);
 	// newBlock* h1;
@@ -133,17 +137,17 @@ int main(int argc, char** argv) {
 	// h4->size = 1050 - sizeof(*h3);
 	// h3->next = h4;
 	
-	//testing getmem
+	// testing getmem
 	// getmem(950); 
-	//getmem(5000);
+	// getmem(5000);
 
-	//get_mem_stats
+	// get_mem_stats
 	// uintptr_t *total_size = (uintptr_t *) malloc(sizeof(uintptr_t));
 	// uintptr_t *total_free = (uintptr_t *) malloc(sizeof(uintptr_t));
 	// uintptr_t *n_free_blocks = (uintptr_t *) malloc(sizeof(uintptr_t));
 	// get_mem_stats(total_size, total_free, n_free_blocks);
-			// printf("%lu\n", *total_size);
-			// printf("%lu\n", *total_free);
-			// printf("%lu\n", *n_free_blocks);
+	// 		printf("%lu\n", *total_size);
+	// 		printf("%lu\n", *total_free);
+	// 		printf("%lu\n", *n_free_blocks);
 
 }

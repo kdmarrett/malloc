@@ -40,11 +40,13 @@ void* getmem(uintptr_t size) {
 			newBlock* temp;
 			temp = malloc(MSIZE + hsize);
 			assert(temp != NULL && "malloc failed in getmem");
-			node = temp + temp->size - size; //node=temp+hsize+temp->size-soze-hsize
+			node = temp + temp->size - size; 
+			//node=temp+hsize+temp->size-soze-hsize
 			node->size = size; 
 			free_list = temp;
 			free_list->size = MSIZE - size -hsize; //minus the size of next and uint
 		}
+		assert(node != NULL && "malloc failed in getmem");
 		return node;
 	}
 	//if free_list is not NULL

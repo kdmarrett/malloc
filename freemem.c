@@ -50,9 +50,6 @@ newBlock* addBlock(newBlock* current, void* p)
 		current = (newBlock*) p; 
 		current->next = NULL; //protect current from faulty next
 	} else if (((void*)current) > p)  { //address of p is less than current
-		//uintptr_t p = (uintptr_t) p;
-		//uintptr_t next = p + 1;//get mem& of next field
-		//*next = current; //make p point to current
 		newBlock* temp;
 		temp = current;
 		current = (newBlock*) p; 
@@ -71,18 +68,18 @@ newBlock* addBlock(newBlock* current, void* p)
  */
 void handleCombines(newBlock* current)
 {
-	if (current->next != NULL)  {
-		//address of next contiguous memory
-		newBlock* nextAddress = 
-			current + hsize + current->size;
-		// check next possible & matches actual current->next &
-		if (nextAddress == ( current->next))  { 
-			// combine blocks
-			current->size = 
-				current->size + current->next->size +
-				 hsize;
-			current->next = current->next->next;
-		}
+	if (current->next == NULL)  
+		return;
+	//address of next contiguous memory
+	newBlock* nextAddress = 
+		current + hsize + current->size;
+	// check if next possible & matches actual current->next &
+	if (nextAddress ==  current->next)  { 
+		// combine blocks
+		current->size = 
+			current->size + current->next->size +
+			 hsize;
+		current->next = current->next->next;
 	}
 }
 

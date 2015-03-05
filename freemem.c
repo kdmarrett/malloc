@@ -4,11 +4,6 @@
 // Feb 20th
 // freemem.c for dist program
 
-//TODO When can we reference a field and when do we have to 
-// manually find the address of that field
-// TODO fields and pointer checks for all the functions HCBWKCSCOD
-// TODO assert that next field of p is null?
-
 #include "mem.h"
 #include "mem_impl.h"
 
@@ -33,8 +28,8 @@ void handleCombines(newBlock* current);
 void freemem(void* p)
 {	
 	if (p == NULL)  {
-		fprintf(stderr, "Warning: pointer passed is NULL and \
-			can not be freed.\n");
+		fprintf(stderr, "Warning: pointer passed is NULL and"
+			" can not be freed.\n");
 		return;
 	}
 	free_list = addBlock(free_list, p);

@@ -55,6 +55,11 @@ int main(int argc, char** argv) {
 	int items;
 	int index;
 	int tenPercent;
+	printf("ntrials: %d\n", ntrials);
+	printf("pctget: %d\n", pctget);
+	printf("pctlarge: %d\n", pctlarge);
+	printf("small_limit: %d\n", small_limit);
+	printf("large_limit: %d\n", large_limit);
 	tenPercent = (int) (ntrials / 10);
 	items = 0;
 	void** currentBlocks;
@@ -74,20 +79,18 @@ int main(int argc, char** argv) {
 			// add to end of array
 			currentBlocks[items] = getmem(size);
 			items++;
-
 		// Free mem
 		}  else  {
-			if (items == 0)  {
-				continue;
+			if (items != 0)  {
+				index = rand() % items; //choose a memblock
+				freemem(currentBlocks[index]);
+				if (index != (items - 1))  {
+					//replace with last block
+					currentBlocks[index] = 
+						currentBlocks[items - 1];
+				}
+				items--;
 			}
-			index = rand() % items; //choose a memblock
-			freemem(currentBlocks[index]);
-			if (index != (items - 1))  {
-				//replace with last block
-				currentBlocks[index] = 
-					currentBlocks[items - 1];
-			}
-			items--;
 		}
 
 		// Stats

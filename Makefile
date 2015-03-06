@@ -25,8 +25,6 @@ getmem.o: getmem.c mem.h mem_impl.h
 	gcc -Wall -g -c getmem.c
 
 #other target
-test: bench
-	./bench [10000 [50 [10 [200 [2000 [1]]]]]]
 clean:
 	rm -f *.o bench hw6.tar
 log:

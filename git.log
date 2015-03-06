@@ -1,3 +1,154 @@
+commit 26d85c96df5b53d8e1aa170d1c85242c0466f819
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Thu Mar 5 19:42:26 2015 -0800
+
+    All things working Readme not quite finished. clock fixed, headers cleaned up.
+
+commit eadb94a114682194a947e2f99c74a93fafc78f31
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Thu Mar 5 18:04:15 2015 -0800
+
+    everything working except for clock
+
+commit 65db6598aa219f815e96f86e31c8d212c18ab623
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Thu Mar 5 15:25:53 2015 -0800
+
+    debugging versions fixed pointer arithmetic
+
+commit b6a20c688a09e7f6873fe0ee081538c6b936da9c
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Thu Mar 5 10:54:31 2015 -0800
+
+    Diagnositics commit contains final versions of code with printf statements for diagnostics, these will be removed in the final version to be turned in seg faults still coming from lines around 90 and 40 in getmem.c
+
+commit 2c2ee970c6f65341e6b349d239ea460afc6e77ad
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Wed Mar 4 23:42:20 2015 -0800
+
+    Some remaining problems in program:
+    	Clock returns negative values
+    	main section of freemem caught in infinite loop
+    		likely due to a test not being handled correctly in recursive
+    		function "add to block" in freemem
+    Updates:
+    	fixed seg faults at:
+    		getmem.c 88-92
+    		getmem.c 40-52
+
+commit cef8f8a6982c91bf826b71862fcad51f98f8d22b
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Wed Mar 4 18:59:40 2015 -0800
+
+    All memory package functions appear to be function, however running of main part
+    of  bench.c still creates a seg fault.  More debugging needed.
+
+commit 2a10178947cb3002ff10502508ca4c712a425e5f
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Wed Mar 4 17:21:08 2015 -0800
+
+    Misc. changes
+
+commit df7d09f86960aa216b5474317267573057ccbb8f
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Wed Mar 4 16:15:57 2015 -0800
+
+    First compilable version of all programs.  Now beginning rigorous testing
+
+commit 5320e3b9b76fc31726408924e1ce9049296f1ac4
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Wed Mar 4 13:39:24 2015 -0800
+
+    wed after class
+
+commit 2d87b9274fab98f39a6d04e465805e9dd0b3bae2
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Wed Mar 4 12:14:14 2015 -0800
+
+    first draft of bench missing some functionality
+
+commit dc4d262e266876a4d4895295d9d5ccd0c982be96
+Merge: 4111325 db0a578
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Wed Mar 4 09:21:21 2015 -0800
+
+    Cleaned up merge conflicts of edits
+    
+    Merge branch 'master' of gitlab.cs.washington.edu:cse374-15wi-proj/hw6-cd
+    
+    Conflicts:
+    	freemem.c
+
+commit 4111325b3ae1d2442f8cbb5c7c91c28ccd829a33
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Wed Mar 4 08:50:43 2015 -0800
+
+    First version of memory package
+
+commit a9131d4c7e8be3132a9b1696055f34b0e200c8da
+Merge: e7d6ee3 19afbdd
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Tue Mar 3 19:15:58 2015 -0800
+
+    Merge branch 'master' of gitlab.cs.washington.edu:cse374-15wi-proj/hw6-cd
+
+commit e7d6ee3daf3718ba3395b0ea3a439495baa53800
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Tue Mar 3 19:15:07 2015 -0800
+
+    small updates need to change casts, references, and comparison of addresses
+
+commit f3eeb3bf3c7cf9798093e5bd62af15edc3b2d65b
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Tue Mar 3 18:39:25 2015 -0800
+
+    first draft of freemem.c, needs review of pointer referencing and manual memory addressing and testing with bench.c
+
+commit 79212dc6f54eb6ebd6ea5f000d7522690d89d3f6
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Tue Mar 3 15:30:39 2015 -0800
+
+    first review of getmem.c commented out section of reordering, deleting these sections needs to be finalized by Nan to check for mistakes.  more rigorous testing of getmem.c in a future commit
+
+commit ca2fc078ba0a5630d2adc7b51908faff4d50c81c
+Merge: 80f0217 75a3972
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Tue Mar 3 14:24:53 2015 -0800
+
+    Merging after blocked out for a day
+    
+    Merge branch 'master' of gitlab.cs.washington.edu:cse374-15wi-proj/hw6-cd
+
+commit 80f02176f7dc821deef2d2789ecdbccf5bd7a8cf
+Author: KARL D MARRETT <kdmarret@u.washington.edu>
+Date:   Tue Mar 3 11:55:00 2015 -0800
+
+    first sketch of freemem
+
+commit db0a578de7d85f0b2d7d59961f48814c34186058
+Author: NAN JIANG <nj8@u.washington.edu>
+Date:   Sat Feb 28 00:45:01 2015 -0800
+
+    few comments
+
+commit eee4b03d66c346086ecf55c1db4b6bc4153fb889
+Author: NAN JIANG <nj8@u.washington.edu>
+Date:   Sat Feb 28 00:25:17 2015 -0800
+
+    getmem.c more changes
+
+commit 19afbdd1e8c3a46266ac76adecc96910bbdd491e
+Author: NAN JIANG <nj8@u.washington.edu>
+Date:   Fri Feb 27 23:46:03 2015 -0800
+
+    update getmem
+
+commit 75a39728e29a6c2f0253ee7fa655eed4d073c229
+Author: NAN JIANG <nj8@u.washington.edu>
+Date:   Fri Feb 27 19:56:57 2015 -0800
+
+    correct version of getmem.c
+
 commit 6ed891773229ad5d06926ca01e47aff40ddb8ac8
 Author: NAN JIANG <nj8@u.washington.edu>
 Date:   Fri Feb 27 14:50:00 2015 -0800

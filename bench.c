@@ -56,86 +56,13 @@ int main(int argc, char** argv) {
 	if (argc > 6)  
 		random_seed = atoi(argv[6]);
 		srand((unsigned) random_seed);
-
-	// misc. testing
-
-	// manually create a free_list
-	// free_list = malloc(500);
-	// free_list->size = 500-sizeof(*free_list);
-	// newblock* h1;
-	// h1 = malloc(700);
-	// h1->size = 700 - sizeof(*h1);
-	// free_list->next = h1;
-
-	// newblock* h2;
-	// h2 = malloc(900);
-	// h2->size = 900 - sizeof(*h2);
-	// h1->next = h2;
-	
-	// newblock* h3;
-	// h3 = malloc(1000);
-	// h3->size = 1000 - sizeof(*h3);
-	// h2->next = h3;
-	
-	// newblock* h4;
-	// h4 = malloc(1050);
-	// h4->size = 1050 - sizeof(*h3);
-	// h3->next = h4;
-	
-	// testing getmem
-	// getmem(950); 
-	// getmem(5000);
-
-	// get_mem_stats
-	// uintptr_t *total_size = (uintptr_t *) malloc(sizeof(uintptr_t));
-	// uintptr_t *total_free = (uintptr_t *) malloc(sizeof(uintptr_t));
-	// uintptr_t *n_free_blocks = (uintptr_t *) malloc(sizeof(uintptr_t));
-	// get_mem_stats(total_size, total_free, n_free_blocks);
-	// 		printf("%lu\n", *total_size);
-	// 		printf("%lu\n", *total_free);
-	// 		printf("%lu\n", *n_free_blocks);
-		
-	// void* p;
-	// void* q;
-	// int j;
-	// int k;
-	// j = 0;
-	// k = 1;
-	// while(k < j)  {
-	// 	k++;
-	// 	p = getmem(5000 + k* 20);
-	// 	q = getmem(5000+ k * 17);
-	// 	if (k % 2 ==0) {
-	// 		freemem(p);
-	// 	}
-	// 	get_mem_stats(
-	// 	&total_size, &total_free, &n_free_blocks);
-	// 	printf("total size allocated: %lu\n", total_size);
-	// 	printf("total free size:  %lu\n", total_free);
-	// 	printf("total blocks: %lu\n", n_free_blocks);
-	// 	end = clock();
-	// 	duration = (double) (end - start) / (double) clocks_per_sec;
-	// 	printf("total time elapsed = %3f\n", duration);
-	// }
-	// //print_heap
-	// file *f;
-	// f = fopen("test", "w+");
-	// print_heap(f);
-	// //return 0;
-	
-	// fclose(f);
-	// getmem(48);
-	// freemem(p);
-	// freemem(p);
-	// getmem(48);
-	// getmem(48);
 	
 	int i;
 	int size;
 	int items;
 	int index;
 	int tenPercent;
-	tenPercent = ntrials / 10;
+	tenPercent = (int) (ntrials / 10);
 	items = 0;
 	void** currentBlocks;
 	currentBlocks = 
@@ -150,9 +77,7 @@ int main(int argc, char** argv) {
 				size = (rand() % small_limit) + 1;
 			}
 			// add to end of array
-			printf("TRY GETMEM\n");
 			currentBlocks[items] = getmem(size);
-			printf("SUCCESS AT GETMEM\n");
 			items++;
 
 		// Free mem
@@ -161,21 +86,17 @@ int main(int argc, char** argv) {
 				continue;
 			}
 			index = rand() % items; //choose a memblock
-			printf("TRY FREEMEM\n");
 			freemem(currentBlocks[index]);
-			printf("SUCCESS AT FREEMEM\n");
 			if (index != (items - 1))  {
 				//replace with last block
-				printf("TRY REPLACE\n");
 				currentBlocks[index] = 
 					currentBlocks[items - 1];
-				printf("SUCCESS AT REPLACE\n");
 			}
 			items--;
 		}
 
 		// Stats
-		if (i !=0 && (i % tenPercent) == 0)  {
+		if ((i !=0) && ((i % tenPercent) == 0))  {
 			get_mem_stats(
 				&total_size, &total_free, &n_free_blocks);
 			printf("Total size allocated: %lu\n", total_size);
@@ -186,5 +107,11 @@ int main(int argc, char** argv) {
 			printf("Time elapsed = %f\n", duration);
 		}
 	}
+
+	//print_heap
+	file *f;
+	f = fopen("test", "w+");
+	print_heap(f);
+	
 	return 0;
 }

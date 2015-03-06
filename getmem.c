@@ -14,7 +14,7 @@
 //newBlock* free_list = NULL;
 uintptr_t tsize = 0; // total size malloc in program
 // size of header for finding data/top of block
-uintptr_t hsize = sizeof(newBlock*) + sizeof(uintptr_t);
+uintptr_t hsize = (uintptr_t)(sizeof(newBlock*) + sizeof(uintptr_t));
 
 void* getmem(uintptr_t size) {	
 	//assert((size % 16) == 0 && "size must be multiple of 16");
@@ -64,7 +64,9 @@ void* getmem(uintptr_t size) {
 	if(h1->size > size) { //the first one is big enough 
 		newBlock* tempN;
 		if((h1->size-size) > THRESHOLD) { //return the needed memory, and put the rest back to free_list
-			tempN = h1 + h1->size - size; //same as temp above
+			uintptr_t loc3;
+			loc3 = (uintptr_t) h1; // cast the pointer address
+			tempN = (newBlock* )(loc3 + h1->size - size); //same as temp above
 			h1->size = h1->size - size - hsize; //minus the size of next and uint
 			tempN->size = size;
 		} else {//within the threshold, return the whole block
@@ -90,8 +92,6 @@ void* getmem(uintptr_t size) {
 				}else { //only take needed memory leave rest current place
 					newBlock* temp;
 					// cut temp out of bottom of h2
-					printf("h2size: %" PRIuPTR "\n", h2->size);
-					printf("size: %" PRIuPTR "\n", size);
 					uintptr_t loc;
 					loc = (uintptr_t) h2; // cast the pointer address
 					temp = (newBlock* )(loc + h2->size - size); 

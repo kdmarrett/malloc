@@ -4,14 +4,8 @@
 // Feb 20th
 // bench.c for dist program
 
-// TODO clocking, random seeding, printing every 10 iterations
-
 #include "mem.h"
-#include "mem_impl.h"
 #include <time.h>
-
-extern newBlock * free_list;
-extern uintptr_t tsize;
 
 int main(int argc, char** argv) {
 	uintptr_t total_size;
@@ -26,7 +20,6 @@ int main(int argc, char** argv) {
 	time_t start, end;
 	double duration;
 	int random_seed;
-	start = clock();
 	srand((unsigned) time(&start));
 
 	programName = argv[0];
@@ -65,8 +58,10 @@ int main(int argc, char** argv) {
 	tenPercent = (int) (ntrials / 10);
 	items = 0;
 	void** currentBlocks;
+	//hold active blocks
 	currentBlocks = 
 		(void** ) malloc(sizeof(newBlock*) * ntrials);
+	start = clock();
 	for (i = 0; i < ntrials; i++)  {
 		//get mem
 		if ((rand() % 100) >= pctget ) {
@@ -102,6 +97,8 @@ int main(int argc, char** argv) {
 			printf("Total size allocated: %lu\n", total_size);
 			printf("Total free size: %lu\n", total_free);
 			printf("Free blocks: %lu\n", n_free_blocks);
+			printf("Average bytes per free block: %lu\n", 
+					(uintptr_t) (total_free / n_free_blocks));
 			end = clock();
 			duration = (double) (end - start) / (double) CLOCKS_PER_SEC;
 			printf("Time elapsed = %f\n", duration);
@@ -109,9 +106,9 @@ int main(int argc, char** argv) {
 	}
 
 	//print_heap
-	file *f;
-	f = fopen("test", "w+");
-	print_heap(f);
+	//file *f;
+	//f = fopen("test", "w+");
+	//print_heap(f);
 	
 	return 0;
 }

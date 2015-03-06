@@ -12,12 +12,11 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include <assert.h>
+#include "mem.h"
 
-typedef struct newBlock {
-  uintptr_t size;
-  struct newBlock* next;
-}newBlock;
 newBlock* free_list;
-
+uintptr_t tsize;
+// size of header for finding data/top of block
 
 #endif

@@ -4,23 +4,11 @@
 // Feb 20th
 // freemem.c for dist program
 
-#include "mem.h"
 #include "mem_impl.h"
 
-#include <inttypes.h>
-#include <stdio.h>
-#include <string.h>
-#include <ctype.h>
-#include <stdlib.h>
-
-extern newBlock* free_list;
-//size of newBlock overhead PUT IN MEMIMPL.H LATER??
-extern uintptr_t hsize;
-
-void freemem(void* p);
 newBlock* addBlock(newBlock* current, void* p);
 void handleCombines(newBlock* current);
-
+extern uintptr_t hsize;
 
 /** Takes a memory address of a newBlock to be
  * freed. p points to address of the size field 

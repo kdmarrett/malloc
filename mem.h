@@ -11,6 +11,12 @@
 #include <stdio.h>
 #include <inttypes.h>
 
+
+typedef struct newBlock {
+  uintptr_t size;
+  struct newBlock* next;
+}newBlock;
+
 void* getmem(uintptr_t size);
 void freemem(void* p);
 void get_mem_stats(uintptr_t* total_size, uintptr_t* 

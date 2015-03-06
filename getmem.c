@@ -4,16 +4,12 @@
 // Feb 20th
 // getmem.c that implements malloc function for dist program
 
-#include "mem.h"
 #include "mem_impl.h"
-#include <assert.h>
 
 #define MSIZE 4000
 #define THRESHOLD 32
 
-//newBlock* free_list = NULL;
 uintptr_t tsize = 0; // total size malloc in program
-// size of header for finding data/top of block
 uintptr_t hsize = (uintptr_t)(sizeof(newBlock*) + sizeof(uintptr_t));
 
 void* getmem(uintptr_t size) {	

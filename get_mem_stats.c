@@ -4,16 +4,8 @@
 // Feb 20th
 // get_mem_stats.c for dist program
 
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-#include <stdio.h>
-#include <inttypes.h>
-#include "mem.h"
 #include "mem_impl.h"
-
-extern newBlock * free_list;
-extern uintptr_t tsize;
+extern uintptr_t hsize;
 
 void get_mem_stats(uintptr_t* total_size,
 	uintptr_t* total_free, uintptr_t* n_free_blocks) {

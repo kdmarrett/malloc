@@ -30,4 +30,4 @@ clean:
 log:
 	git log > git.log
 tar:
-	tar -cvf hw6.tar mem_impl.h mem.h getmem.c get_mem_stats.c freemem.c print_heap.c Makefile git.log README.md
+	tar -cvf dist.tar mem_impl.h bench.c mem.h getmem.c get_mem_stats.c freemem.c print_heap.c Makefile git.log README.md

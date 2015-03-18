@@ -55,11 +55,6 @@ int main(int argc, char** argv) {
 	int items;
 	int index;
 	int tenPercent;
-	printf("ntrials: %d\n", ntrials);
-	printf("pctget: %d\n", pctget);
-	printf("pctlarge: %d\n", pctlarge);
-	printf("small_limit: %d\n", small_limit);
-	printf("large_limit: %d\n", large_limit);
 	tenPercent = (int) (ntrials / 10);
 	items = 0;
 	void** currentBlocks;

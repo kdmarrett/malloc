@@ -1,8 +1,8 @@
 Karl Marrett
 Nan Jiang
-CSE 374 HW6
-Feb 20th
-README for dist program
+Feb 20th 2015 
+
+# Program mimicking c functions 'malloc' and 'free'
 
 Dist is program that mimics some of the features of the functions malloc
 and free.  The getmem.c, print_heap.c, and get mem_stats were developed
